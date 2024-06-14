@@ -1,5 +1,6 @@
 # Digital-Image-Processing
-디지털 영상처리
+ Digital Image Processing Using python
+ 
 
 ## Intensity Transformations and Spatial Filtering
 ### Intensity Transformations
