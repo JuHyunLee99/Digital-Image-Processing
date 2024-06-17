@@ -6,4 +6,4 @@
 ### Intensity Transformations
 #### Negative
 <img
-src="https://github.com/JuHyunLee99/Digital-Image-Processing/blob/main/ch03/Result/ex01_Negative.tif" width="700"/>
+src="ch03/Images/Result/ex01_Negative.png" width="700"/>
