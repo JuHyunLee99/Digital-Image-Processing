@@ -1,4 +1,6 @@
-# 감마 보정
+# 구간 선형 변환
+# 밝기-레벨 슬라이싱
+# 특정 밝기 범위 강조
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,7 +12,9 @@ def getTextSize(draw, text, font):
     bbox = draw.textbbox((0, 0), text, font=font)
     text_width = bbox[2] - bbox[0]
     text_height = bbox[3] - bbox[1]
-    return (text_width, text_height)  
+    return (text_width, text_height)
+
+# 결과 이미지 나타내기  
 def showImages(images, row, col, spacing = 20, fontSize = 30, title = None, indexNewImg = -1):
     # 새 캔버스 만들기
     original_image = list(images.values())[0]
@@ -60,28 +64,40 @@ def showImages(images, row, col, spacing = 20, fontSize = 30, title = None, inde
     else:
         save_name = os.path.splitext(script_name)[0] + f'_{indexNewImg+1}' + '.png'        
     new_image.save(f'ch03\\Images\\Result\\{save_name}')
-    time.sleep(0.5)    
+    time.sleep(0.5)   
+    
 
-# -------------------------- Gamma Correction --------------------------
-def gammaTransform(gamma, original_array):
-    c_gamma = 255 / np.power(np.max(original_array), gamma)
-    gamma_array = c_gamma * np.power(original_array, gamma)
-    gamma_array = gamma_array.astype(np.uint8)
-    return gamma_array
-# ----------------------------------------------------------------------
+# ----------------- Piecewise-Linear Transformation ------------------------
+def intensityLevelSlicing(original_array, lower, upper, binary_mode):
+    
+    if binary_mode:
+        sliced_array = np.where((original_array >= lower) & (original_array <= upper), 255, 0)
+    else:
+        sliced_array = np.where((original_array >= lower) & (original_array <= upper), 0, original_array)
+        
+    sliced_array = sliced_array.astype(np.uint8)
+    return sliced_array
+# -------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # 소스 이미지 로드
-    image_path = r'ch03\Images\Source\Fig0307(a)(intensity_ramp).tif'  # 이미지 경로 설정
+    image_path = r'ch03\Images\Source\Fig0312(a)(kidney).tif'
     original_image = Image.open(image_path)
-    original_array = np.array(original_image, dtype=np.float32)
+    original_array = np.array(original_image, dtype=np.float32)   
     images = { "Original Image" : original_image}
     
-    # -------------------------- Gamma Correction --------------------------
-    gamma = 0.4
-    gamma_array = gammaTransform(gamma, original_array)
-    gamma_Image = Image.fromarray(gamma_array, original_image.mode)
-    images[f'γ = {gamma}'] = gamma_Image
-    # ----------------------------------------------------------------------
+    # Intensity Level Slicing
+    # 구간을 어디로 할지는 나중에 더 배우고 제대로....
     
-    showImages(images, 1, 2, title= 'Gamma Correction')
+    # 관심영역 255, 나머지 0
+    sliced_array = intensityLevelSlicing(original_array, 150, 255, True)
+    sliced_Image = Image.fromarray(sliced_array, original_image.mode)
+    images['s = 255 if 150 ≤ r ≤ 255, otherwise s = 0'] = sliced_Image
+    
+    # 관심영역 0, 나머지 그대로 유지
+    sliced_array = intensityLevelSlicing(original_array, 0, 150, False)
+    sliced_Image = Image.fromarray(sliced_array, original_image.mode)
+    images['s = 0 if 0 ≤ r ≤ 150, otherwise s = r'] = sliced_Image
+       
+    showImages(images, 1, 3, title= 'Piecewise-Linear Transformation (Intensity-Level-Slicing)')
+
+    

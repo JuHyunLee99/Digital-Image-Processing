@@ -1,41 +1,58 @@
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import matplotlib.pyplot as plt
-import cv2
-   
-image_path = r'C:\Source\Digital-Image-Processing\ch03\Images\Fig0304(a)(breast_digital_Xray).tif'  # 이미지 경로 설정
+import os
+import time
+
+def getTextSize(text):
+    # 텍스트 바운딩 박스 계산
+    bbox = draw.textbbox((0, 0), text, font=font)
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+    return (text_width, text_height)    
+    
+image_path = r'ch03\Images\Source\Fig0304(a)(breast_digital_Xray).tif'  # 이미지 경로 설정
 original_image = Image.open(image_path)
-# original_image.show()
-# print("Image mode:", original_image.mode)
 original_array = np.array(original_image)
 
- # 네거티브 변환 수행
+# -------------------------- Negative Transformation --------------------------
 max_value = np.iinfo(original_array.dtype).max
 min_value = np.iinfo(original_array.dtype).min
 negative_array = max_value - original_array
-negative_image = Image.fromarray(negative_array, 'L')
-# negative_image.show()
-
-plt.figure()
-plt.subplot(1, 2, 1)
-plt.imshow(original_image, cmap='gray', vmin=min_value, vmax=max_value)
-plt.title('Original Image')
-plt.axis('off')
-
-plt.subplot(1, 2, 2)
-plt.imshow(negative_array, cmap='gray', vmin=min_value, vmax=max_value)
-plt.title('Negative_image')
-plt.axis('off')   
-# plt.show()
+# -----------------------------------------------------------------------------
+ 
+# 결과 이미지 나타내기
+negative_image = Image.fromarray(negative_array, original_image.mode)
 
 spacing = 10  # 픽셀 단위
-total_width = original_image.width * 2 + spacing
-max_height = original_image.height
-new_image = Image.new('L', (total_width, max_height))
-# 새 캔버스에 이미지 복사
-new_image.paste(original_image, (0, 0))  # 원본 이미지를 왼쪽에 붙임
-new_image.paste(negative_image, (original_image.width+spacing, 0))  # 처리된 이미지를 오른쪽에 붙임
+total_width = original_image.width * 2 + 3*spacing
+total_height = original_image.height + 4*spacing
+new_image = Image.new('L', (total_width, total_height), "White")
 
-# 이미지 저장 또는 표시
-new_image.show()  # 이미지 보기
-new_image.save('ch03\Result\ex01_Negative.tif')  # 이미지 저장
+# 새 캔버스에 이미지 복사
+new_image.paste(original_image, (spacing, 3*spacing))  # 원본 이미지를 왼쪽에 붙임
+new_image.paste(negative_image, (original_image.width+2*spacing, 3*spacing))  # 처리된 이미지를 오른쪽에 붙임
+
+# 텍스트 추가
+draw = ImageDraw.Draw(new_image)
+font_path = r'C:\Windows\Fonts\Arial.ttf'
+font_size = 20 
+font = ImageFont.truetype(font_path, font_size)
+
+text = "Original"
+text_width = getTextSize(text)[0]
+text_x = (original_image.width - text_width) // 2 + spacing
+text_y = 5
+draw.text((text_x, text_y), text, font=font, fill="black")
+
+text = "Negative Transformation"
+text_width = getTextSize(text)[0]
+text_x = (negative_image.width - text_width) // 2 + original_image.width+2*spacing
+draw.text((text_x, text_y), text, font=font, fill="black")
+
+# 이미지 보기, 저장
+new_image.show()
+script_name = os.path.basename(__file__)
+save_name = os.path.splitext(script_name)[0] + '.png'
+new_image.save(f'ch03\Images\Result\\{save_name}')
+time.sleep(0.5)
