@@ -6,4 +6,4 @@
 ### Intensity Transformations
 #### Negative
 <img
-src="https://raw.githubusercontent.com/JuHyunLee99/WPF/main/Images/MovieFinder3.gif" width="700"/>
+src="https://github.com/JuHyunLee99/Digital-Image-Processing/blob/main/ch03/Result/ex01_Negative.tif" width="700"/>
