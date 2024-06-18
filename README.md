@@ -23,7 +23,7 @@
 max_value = np.iinfo(original_array.dtype).max
 negative_array = max_value - original_array
 ```
-![](ch03/Images/Result/ex01_Negative.png)
+![](ch03/Images/Result/Intensity_Transformations/ex01_Negative.png)
 
 ##### 2. Log
 
@@ -35,7 +35,7 @@ original_array = np.array(original_image, dtype=np.float32)
 c_log = 255 / np.log(1 + np.max(original_array))   # c: 스케일링 상수 =>  표준 8비트 그레이스케일 범위 [0, 255] 벗어나지 않도록 
 log_array = c_log * np.log(1 + original_array) # np.log(1 + original_array)에서 256으로 오버플로우 발생하므로 dtype=np.float32로 설정.
 ```
-![](ch03/Images/Result/ex02_Log.png)
+![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)
 
 ##### 3. Power Low
 
@@ -53,19 +53,19 @@ def gammaTransform(gamma, original_array):
 ```
 
 - **Gamma Correction**
-   ![](ch03/Images/Result/ex03_PowerLow.png)
+   ![](ch03/Images/Result/Intensity_Transformations/ex03_PowerLow.png)
    
 - **Constrast Enhancement**
-   ![](ch03/Images/Result/ex04_PowerLow.png)
-   ![](ch03/Images/Result/ex05_PowerLow.png)
+   ![](ch03/Images/Result/Intensity_Transformations/ex04_PowerLow.png)
+   ![](ch03/Images/Result/Intensity_Transformations/ex05_PowerLow.png)
   
 ##### **※ Log VS PowerLow(γ < 1)**
-![](ch03/Images/Result/ex06_LogVsPowerLow_1.png)
+![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_1.png)
 Log 변환은 이미지의 밝기 범위를 균등하게 확장하여 이미지에서 밝기 값이 낮은 영역(어두운 부분)의 세부사항이 크게 강조.
 로그 변환된 이미지는 패턴과 질감이 더욱 명확하게 드러남.
 PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중요한 영역의 시각적인 구분을 명확하게 하는데 도움.
-![](ch03/Images/Result/ex06_LogVsPowerLow_2.png)
-![](ch03/Images/Result/ex06_LogVsPowerLow_3.png)
+![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_2.png)
+![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_3.png)
 로그 변환은 특히 어두운 부분의 디테일을 더욱 선명하게 보이도록 해주는 반면, 파워 로 변환은 밝은 부분의 대비를 더욱 증가시켜줍니다.
 ##### 4. Piecewise Linear
 - **Contrast Stretching**
@@ -92,7 +92,7 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
    thresholded_array = thresholded_array.astype(np.uint8)
    return thresholded_array
   ```
-  ![](ch03/Images/Result/ex07_PiecewiseLinear.png)
+  ![](ch03/Images/Result/Intensity_Transformations/ex07_PiecewiseLinear.png)
 
   
 - **Inensity-Level-Slicing**
@@ -109,7 +109,7 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
     sliced_array = sliced_array.astype(np.uint8)
     return sliced_array
   ```
-  ![](ch03/Images/Result/ex08_PiecewiseLinear.png) 
+  ![](ch03/Images/Result/Intensity_Transformations/ex08_PiecewiseLinear.png) 
   범위는 임의로 했음. 뒤로 가면 범위도 어떻게 정해야하는지 나오기 않을까...
   
 - **Bit-plane slicing**
@@ -122,7 +122,7 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
       sliced_array = sliced_array.astype(np.uint8)
       return sliced_array
   ```
-  ![](ch03/Images/Result/ex09_PiecewiseLinear.png)
+  ![](ch03/Images/Result/Intensity_Transformations/ex09_PiecewiseLinear.png)
 
   ``` python
   def bitPlaneSlicing(original_array, i):
@@ -137,10 +137,21 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
           sliced_array += bitPlaneSlicing(original_array, num) * 2**num
       return sliced_array
   ```
-  ![](ch03/Images/Result/ex10_PiecewiseLinear.png)
+  ![](ch03/Images/Result/Intensity_Transformations/ex10_PiecewiseLinear.png)
   영상 압축에 유용
   네 개의 최상위 비트 평면들을 저장하면 만족할 만한 디테일을 갖게 원래 영상을 복구할 수 있다.
 
+#### 1.1.2 Histogram Processing
 
+`h(r_k) = n_k  where 0 ≤ r_k ≤ L-1`
+- r_k : k번째 밝기 값
+- n_k : 영상에서 밝기 r_k를 갖는 화소들 수
 
+정규화  
+`p(r_k) = n_k/NM`  
+- N, M = 영상의 행과 열 수  
+=> p(r_k)는 영상에서 밝기 레벨 r_k가 발생할 확률의 추정  
+=> 정규화된 히스토그램의 모든 요소의 합은 1
 
+```
+![](ch03/Images/Result/Histogram_Processing/ex01_Histogram.png)
