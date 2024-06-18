@@ -1,7 +1,5 @@
 ##### d. Piecewise Linear
-- **Contrast Stretching**  
-   ![1](ch03/Images/Result/ex07_PiecewiseLinear.png)
-  
+- **Contrast Stretching**   
    $(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$
    ``` python
    def contrastStretching(original_array):
@@ -39,4 +37,5 @@
     sliced_array = sliced_array.astype(np.uint8)
     return sliced_array
    ```
+    ![Contrast Stretching](ch03/Images/Result/ex07_PiecewiseLinear.png)
      ![2](ch03\Images\Result\ex08_PiecewiseLinear.png)
