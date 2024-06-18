@@ -1,6 +1,5 @@
 # Digital-Image-Processing
 곤잘레스 Digital Image Processing 예제 Python으로  해보기  
-
 ![diagram](https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/45ec4d14-04ea-421e-b941-1877d496544f)
 
 > ※ 모듈 PIL, numpy 사용. matplotlib.pyplot 사용 안함.  
@@ -12,8 +11,7 @@
 - Point Operations (Intensity Transformations)
 - Spatial Filters (or Mask, Kernel)
 #### 1.1.1 Intensity Transformations
-##### 1. Negative
-
+##### a. Negative
 $s = L - 1 - r$
 - r : 원본 이미지의 픽셀 값
 - s : 변환된 이미지의 픽셀 값
@@ -24,7 +22,8 @@ max_value = np.iinfo(original_array.dtype).max
 negative_array = max_value - original_array
 ```
 ![](ch03/Images/Result/ex01_Negative.png)
-##### 2. Log
+
+##### b. Log
 
 $s = c \cdot \log(1 + r) \quad \text{for} \quad r \geq 0$
 
@@ -36,7 +35,8 @@ c_log = 255 / np.log(1 + np.max(original_array))   # c: 스케일링 상수 =>  
 log_array = c_log * np.log(1 + original_array) # np.log(1 + original_array)에서 256으로 오버플로우 발생하므로 dtype=np.float32로 설정.
 ```
 ![](ch03/Images/Result/ex02_Log.png)
-##### 3. Power Low
+
+##### c. Power Low
 
 $s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$
 
@@ -50,57 +50,19 @@ def gammaTransform(gamma, original_array):
  gamma_array = gamma_array.astype(np.uint8)
  return gamma_array
 ```
-1) **Gamma Correction**
+
+- **Gamma Correction**
    ![](ch03/Images/Result/ex03_PowerLow.png)
-2) **Constrast Enhancement**
+   
+- **Constrast Enhancement**
    ![](ch03/Images/Result/ex04_PowerLow.png)
    ![](ch03/Images/Result/ex05_PowerLow.png)
-
-##### ※ Log VS PowerLow
+  
+##### **※ Log VS PowerLow**
 ![](ch03/Images/Result/ex06_LogVsPowerLow_1.png)
 ![](ch03/Images/Result/ex06_LogVsPowerLow_2.png)
 ![](ch03/Images/Result/ex06_LogVsPowerLow_3.png)
 
-##### 4. Piecewise Linear
-1) **Contrast Stretching**
-   
-   $(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$
 
-   ``` python
-   def contrastStretching(original_array):
-    min_val = np.min(original_array)
-    max_val = np.max(original_array)
-    # 0 ~ 255 스케일링
-    # original_array - min_val :  픽셀 값에서 최소값을 뺌. 데이터의 최소값은 0이 됨.
-    # / (max_val - min_val) : 데이터의 범위를 0에서 1사이로 정규화
-    # * 255 : 0에서 255 사이의 값으로 확장
-    stretched_array = (original_array - min_val) / (max_val - min_val) * 255 
-    stretched_array = stretched_array.astype(np.uint8)
-    return stretched_array
-   ```
-   
-   $r_1 = r_2, \quad s_1 = 0, \quad s_2 = L - 1$
-   
-   ``` python
-   def thresholding(original_array):
-    avg_val = np.average(original_array)
-    # 평균값으로 이진화
-    thresholded_array =np.where(original_array >= avg_val, 255, 0)
-    thresholded_array = thresholded_array.astype(np.uint8)
-    return thresholded_array
-   ```
-   ![](ch03\Images\Result\ex07_PiecewiseLinear.png)
-   
-2) **Inensity-Level-Slicing**
-   ``` python
-   def intensityLevelSlicing(original_array, lower, upper, binary_mode):
-    
-    if binary_mode:
-        sliced_array = np.where((original_array >= lower) & (original_array <= upper), 255, 0)
-    else:
-        sliced_array = np.where((original_array >= lower) & (original_array <= upper), 0, original_array)
-        
-    sliced_array = sliced_array.astype(np.uint8)
-    return sliced_array
-   ```
-   ![](ch03\Images\Result\ex08_PiecewiseLinear.png)
+
+
