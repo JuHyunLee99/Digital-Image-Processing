@@ -134,7 +134,7 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
           sliced_array += bitPlaneSlicing(original_array, num) * 2**num
       return sliced_array
   ```
-  ![](ch03\Images\Result\ex09_PiecewiseLinear.png)
+  ![](ch03\Images\Result\ex10_PiecewiseLinear.png)
   영상 압축에 유용
   네 개의 최상위 비트 평면들을 저장하면 만족할 만한 디테일을 갖게 원래 영상을 복구할 수 있다.
 

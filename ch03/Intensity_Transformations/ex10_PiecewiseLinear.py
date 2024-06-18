@@ -69,8 +69,14 @@ def showImages(images, row, col, spacing = 20, fontSize = 30, title = None, inde
 # ------------------------- Bit-plane slicing-----------------------------
 def bitPlaneSlicing(original_array, i):
     mask = 1 << i
-    sliced_array = (np.bitwise_and(original_array, mask) >> i) * 255
+    sliced_array = (np.bitwise_and(original_array, mask) >> i)     
     sliced_array = sliced_array.astype(np.uint8)
+    return sliced_array
+
+def reconstructing(original_array, Indexs):
+    sliced_array = np.zeros_like(original_array)
+    for num in Indexs:
+        sliced_array += bitPlaneSlicing(original_array, num) * 2**num
     return sliced_array
 # -------------------------------------------------------------------------
 
@@ -80,11 +86,21 @@ if __name__ == "__main__":
     original_array = np.array(original_image)   
     images = { "Original Image" : original_image}
     
-    for i in range(8):
-        sliced_array = bitPlaneSlicing(original_array, i)
-        sliced_Image = Image.fromarray(sliced_array)
-        images[f'bit-plane {i}'] = sliced_Image
+    Indexs = [8, 7]
+    sliced_array = reconstructing(original_array, Indexs)
+    sliced_Image = Image.fromarray(sliced_array)
+    images[f'bit-plane {", ".join(map(str, Indexs))}'] = sliced_Image
+     
+    Indexs = [8, 7, 6] 
+    sliced_array = reconstructing(original_array, Indexs)
+    sliced_Image = Image.fromarray(sliced_array)
+    images[f'bit-plane {", ".join(map(str, Indexs))}'] = sliced_Image
+    
+    Indexs = [8, 7, 6, 5] 
+    sliced_array = reconstructing(original_array, Indexs)
+    sliced_Image = Image.fromarray(sliced_array)
+    images[f'bit-plane {", ".join(map(str, Indexs))}'] = sliced_Image
 
-    showImages(images, 3, 3, title= 'Reconstruct Bit-plane-slicing Images')
+    showImages(images, 2, 2, title= 'Reconstruct Bit-plane-slicing Images')
 
     
