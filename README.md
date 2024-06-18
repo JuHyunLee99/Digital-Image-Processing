@@ -57,11 +57,14 @@ def gammaTransform(gamma, original_array):
    ![](ch03/Images/Result/ex04_PowerLow.png)
    ![](ch03/Images/Result/ex05_PowerLow.png)
   
-##### **※ Log VS PowerLow**
+##### **※ Log VS PowerLow(γ < 1)**
 ![](ch03/Images/Result/ex06_LogVsPowerLow_1.png)
+Log 변환은 이미지의 밝기 범위를 균등하게 확장하여 이미지에서 밝기 값이 낮은 영역(어두운 부분)의 세부사항이 크게 강조.
+로그 변환된 이미지는 패턴과 질감이 더욱 명확하게 드러남.
+PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중요한 영역의 시각적인 구분을 명확하게 하는데 도움.
 ![](ch03/Images/Result/ex06_LogVsPowerLow_2.png)
 ![](ch03/Images/Result/ex06_LogVsPowerLow_3.png)
-
+로그 변환은 특히 어두운 부분의 디테일을 더욱 선명하게 보이도록 해주는 반면, 파워 로 변환은 밝은 부분의 대비를 더욱 증가시켜줍니다.
 ##### 4. Piecewise Linear
 - **Contrast Stretching**
   
@@ -91,6 +94,7 @@ def gammaTransform(gamma, original_array):
 
   
 - **Inensity-Level-Slicing**
+  특정 밝기 범위 강조
   ``` python
    def intensityLevelSlicing(original_array, lower, upper, binary_mode):
     
@@ -103,6 +107,34 @@ def gammaTransform(gamma, original_array):
     return sliced_array
   ```
   ![](ch03/Images/Result/ex08_PiecewiseLinear.png) 
+
+- **Bit-plane slicing**
+  특정 비트의 기여를 강조
+  ``` python
+  def bitPlaneSlicing(original_array, i):
+      mask = 1 << i
+      sliced_array = (np.bitwise_and(original_array, mask) >> i)*255       
+      sliced_array = sliced_array.astype(np.uint8)
+      return sliced_array
+  ```
+  ![](ch03\Images\Result\ex09_PiecewiseLinear.png)
+
+  ``` python
+  def bitPlaneSlicing(original_array, i):
+    mask = 1 << i
+    sliced_array = (np.bitwise_and(original_array, mask) >> i)     
+    sliced_array = sliced_array.astype(np.uint8)
+    return sliced_array
+
+  def reconstructing(original_array, Indexs):
+      sliced_array = np.zeros_like(original_array)
+      for num in Indexs:
+          sliced_array += bitPlaneSlicing(original_array, num) * 2**num
+      return sliced_array
+  ```
+  ![](ch03\Images\Result\ex09_PiecewiseLinear.png)
+  영상 압축에 유용
+  네 개의 최상위 비트 평면들을 저장하면 만족할 만한 디테일을 갖게 원래 영상을 복구할 수 있다.
 
 
 
