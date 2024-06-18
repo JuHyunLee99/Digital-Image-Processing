@@ -94,6 +94,7 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
 
   
 - **Inensity-Level-Slicing**
+  
   특정 밝기 범위 강조
   ``` python
    def intensityLevelSlicing(original_array, lower, upper, binary_mode):
@@ -109,6 +110,7 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
   ![](ch03/Images/Result/ex08_PiecewiseLinear.png) 
 
 - **Bit-plane slicing**
+  
   특정 비트의 기여를 강조
   ``` python
   def bitPlaneSlicing(original_array, i):
