@@ -9,30 +9,22 @@
 #### 1.1.1 Intensity Transformations
 ##### 1. Negative
 ![](ch03/Images/Result/ex01_Negative.png)
-<img src="ch03/Images/Result/ex01_Negative.png" width="700"/>
 ##### 2. Log
-<img src="ch03/Images/Result/ex02_Log.png" width="700"/>
+![](ch03/Images/Result/ex02_Log.png)
 ##### 3. Power Low
 1) Gamma Correction
-   <img src="ch03/Images/Result/ex03_PowerLow.png" width="700"/>
-##### 2) Constrast Enhancement  
-<img
-src="ch03/Images/Result/ex04_PowerLow.png" width="700"/>
-<img
-src="ch03/Images/Result/ex05_PowerLow.png" width="700"/>
+   ![](ch03/Images/Result/ex03_PowerLow.png)
+2) Constrast Enhancement
+   ![](ch03/Images/Result/ex04_PowerLow.png)
+   ![](ch03/Images/Result/ex05_PowerLow.png)
 
-#### ※ Log VS PowerLow
-<img
-src="ch03/Images/Result/ex06_LogVsPowerLow_1.png" width="700"/>
-<img
-src="ch03/Images/Result/ex06_LogVsPowerLow_2.png" width="700"/>
-<img
-src="ch03/Images/Result/ex06_LogVsPowerLow_3.png" width="700"/>
+##### ※ Log VS PowerLow
+![](ch03/Images/Result/ex06_LogVsPowerLow_1.png)
+![](ch03/Images/Result/ex06_LogVsPowerLow_2.png)
+![](ch03/Images/Result/ex06_LogVsPowerLow_3.png)
 
-#### 4. Piecewise Linear
-##### 1) Contrast Stretching
-<img
-src="ch03/Images/Result/ex07_PiecewisseLinear.png" width="700"/>
-##### 2) PiecewiseLinear.png
-<img
-src="ch03/Images/Result/ex08_PiecewisseLinear.png" width="700"/>
+##### 4. Piecewise Linear
+1) Contrast Stretching
+   ![](ch03/Images/Result/ex07_PiecewisseLinear.png)
+2) Inensity-Level-Slicing
+   ![](ch03/Images/Result/ex08_PiecewisseLinear.png)
