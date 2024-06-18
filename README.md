@@ -1,5 +1,6 @@
 # Digital-Image-Processing
-곤잘레스 Digital Image Processing 예제 Python으로  해보기  
+곤잘레스 Digital Image Processing  
+예제 그림만 봐서는 실감이 안나서 해보는 python 실습  
 
 ![diagram](https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/45ec4d14-04ea-421e-b941-1877d496544f)
 
