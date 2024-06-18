@@ -89,7 +89,6 @@ def gammaTransform(gamma, original_array):
     thresholded_array = thresholded_array.astype(np.uint8)
     return thresholded_array
    ```
-   ![](ch03/Images/Result/ex07_PiecewisseLinear.png)
    
 2) Inensity-Level-Slicing
    ``` python
@@ -103,4 +102,3 @@ def gammaTransform(gamma, original_array):
     sliced_array = sliced_array.astype(np.uint8)
     return sliced_array
    ```
-   ![](ch03/Images/Result/ex08_PiecewisseLinear.png)
