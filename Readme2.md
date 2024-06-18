@@ -1,7 +1,11 @@
+
+$r_1 = r_2, \quad s_1 = 0, \quad s_2 = L - 1$ 
+$$(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$$
+  
 ##### d. Piecewise Linear
-- **Contrast Stretching**   
-   $(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$
-   ``` python
+- **Contrast Stretching**
+
+  ``` python
    def contrastStretching(original_array):
     min_val = np.min(original_array)
     max_val = np.max(original_array)
@@ -12,21 +16,19 @@
     stretched_array = (original_array - min_val) / (max_val - min_val) * 255 
     stretched_array = stretched_array.astype(np.uint8)
     return stretched_array
-   ```
-   
-   $r_1 = r_2, \quad s_1 = 0, \quad s_2 = L - 1$   
-   ``` python
-   def thresholding(original_array):
-    avg_val = np.average(original_array)
-    # 평균값으로 이진화
-    thresholded_array =np.where(original_array >= avg_val, 255, 0)
-    thresholded_array = thresholded_array.astype(np.uint8)
-    return thresholded_array
-   ```
-   
-   
+  ``` 
+  ``` python
+  def thresholding(original_array):
+   avg_val = np.average(original_array)
+   # 평균값으로 이진화
+   thresholded_array =np.where(original_array >= avg_val, 255, 0)
+   thresholded_array = thresholded_array.astype(np.uint8)
+   return thresholded_array
+  ```
+  ![](ch03/Images/Result/ex07_PiecewiseLinear.png)
+  
 - **Inensity-Level-Slicing**
-   ``` python
+  ``` python
    def intensityLevelSlicing(original_array, lower, upper, binary_mode):
     
     if binary_mode:
@@ -36,6 +38,5 @@
         
     sliced_array = sliced_array.astype(np.uint8)
     return sliced_array
-   ```
-   
-   <img src="ch03/Images/Result/ex07_PiecewiseLinear.png" width="700"/>
+  ```
+  ![](ch03/Images/Result/ex08_PiecewiseLinear.png) 
