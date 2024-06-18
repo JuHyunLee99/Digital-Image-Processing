@@ -17,7 +17,6 @@ original_array = np.array(original_image)
 
 # -------------------------- Negative Transformation --------------------------
 max_value = np.iinfo(original_array.dtype).max
-min_value = np.iinfo(original_array.dtype).min
 negative_array = max_value - original_array
 # -----------------------------------------------------------------------------
  

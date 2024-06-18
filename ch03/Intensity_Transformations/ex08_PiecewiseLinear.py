@@ -3,7 +3,6 @@
 # 특정 밝기 범위 강조
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
-import matplotlib.pyplot as plt
 import os
 import time
 

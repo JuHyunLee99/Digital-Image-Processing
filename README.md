@@ -50,9 +50,9 @@ def gammaTransform(gamma, original_array):
  gamma_array = gamma_array.astype(np.uint8)
  return gamma_array
 ```
-1) Gamma Correction
+1) **Gamma Correction**
    ![](ch03/Images/Result/ex03_PowerLow.png)
-2) Constrast Enhancement
+2) **Constrast Enhancement**
    ![](ch03/Images/Result/ex04_PowerLow.png)
    ![](ch03/Images/Result/ex05_PowerLow.png)
 
@@ -62,7 +62,7 @@ def gammaTransform(gamma, original_array):
 ![](ch03/Images/Result/ex06_LogVsPowerLow_3.png)
 
 ##### 4. Piecewise Linear
-1) Contrast Stretching
+1) **Contrast Stretching**
    
    $(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$
 
@@ -89,8 +89,9 @@ def gammaTransform(gamma, original_array):
     thresholded_array = thresholded_array.astype(np.uint8)
     return thresholded_array
    ```
+   ![](ch03\Images\Result\ex07_PiecewiseLinear.png)
    
-2) Inensity-Level-Slicing
+2) **Inensity-Level-Slicing**
    ``` python
    def intensityLevelSlicing(original_array, lower, upper, binary_mode):
     
@@ -102,3 +103,4 @@ def gammaTransform(gamma, original_array):
     sliced_array = sliced_array.astype(np.uint8)
     return sliced_array
    ```
+   ![](ch03\Images\Result\ex08_PiecewiseLinear.png)
