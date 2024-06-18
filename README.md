@@ -13,12 +13,21 @@
 - Spatial Filters (or Mask, Kernel)
 #### 1.1.1 Intensity Transformations
 ##### 1. Negative
+
+$s = L - 1 - r$
+- r : 원본 이미지의 픽셀 값
+- s : 변환된 이미지의 픽셀 값
+- L : 최대 밝기 레벨의 수 (8비트 이미지 L = 256
+  
 ``` python
 max_value = np.iinfo(original_array.dtype).max
 negative_array = max_value - original_array
 ```
 ![](ch03/Images/Result/ex01_Negative.png)
 ##### 2. Log
+
+$s = c \cdot \log(1 + r) \quad \text{for} \quad r \geq 0$
+
 ``` python
 original_image = Image.open(image_path)
 original_array = np.array(original_image, dtype=np.float32)
@@ -28,6 +37,12 @@ log_array = c_log * np.log(1 + original_array) # np.log(1 + original_array)에�
 ```
 ![](ch03/Images/Result/ex02_Log.png)
 ##### 3. Power Low
+
+$s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$
+
+※ 오프셋  
+$s = c \cdot (r + o)^\gamma \quad \text{where } c, \gamma \text{ are positive constants, and } o \text{ is the offset}$
+
 ``` python
 def gammaTransform(gamma, original_array):
  c_gamma = 255 / np.power(np.max(original_array), gamma)
@@ -37,7 +52,7 @@ def gammaTransform(gamma, original_array):
 ```
 1) Gamma Correction
    ![](ch03/Images/Result/ex03_PowerLow.png)
-3) Constrast Enhancement
+2) Constrast Enhancement
    ![](ch03/Images/Result/ex04_PowerLow.png)
    ![](ch03/Images/Result/ex05_PowerLow.png)
 
@@ -48,6 +63,9 @@ def gammaTransform(gamma, original_array):
 
 ##### 4. Piecewise Linear
 1) Contrast Stretching
+   
+   $(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$
+
    ``` python
    def contrastStretching(original_array):
     min_val = np.min(original_array)
@@ -60,6 +78,9 @@ def gammaTransform(gamma, original_array):
     stretched_array = stretched_array.astype(np.uint8)
     return stretched_array
    ```
+   
+   $r_1 = r_2, \quad s_1 = 0, \quad s_2 = L - 1$
+   
    ``` python
    def thresholding(original_array):
     avg_val = np.average(original_array)
@@ -69,7 +90,8 @@ def gammaTransform(gamma, original_array):
     return thresholded_array
    ```
    ![](ch03/Images/Result/ex07_PiecewisseLinear.png)
-3) Inensity-Level-Slicing
+   
+2) Inensity-Level-Slicing
    ``` python
    def intensityLevelSlicing(original_array, lower, upper, binary_mode):
     
