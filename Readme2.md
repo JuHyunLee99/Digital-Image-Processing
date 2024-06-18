@@ -37,5 +37,7 @@
     sliced_array = sliced_array.astype(np.uint8)
     return sliced_array
    ```
+   <img src="ch03/Images/Result/ex07_PiecewiseLinear.png" width="700"/>
+   <img src = "ch03/Images/Result/ex07_PiecewiseLinear.png", width = 700/>
     ![Contrast Stretching](ch03/Images/Result/ex07_PiecewiseLinear.png)
      ![2](ch03\Images\Result\ex08_PiecewiseLinear.png)
