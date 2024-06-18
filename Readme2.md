@@ -1,8 +1,7 @@
 ##### d. Piecewise Linear
-- **Contrast Stretching**
-
+- **Contrast Stretching**  
+   ![](ch03/Images/Result/ex07_PiecewiseLinear.png)
    $(r_1, s_1) = (r_min, 0), (r_2, s_2) = (r_max, L-1)$
-
    ``` python
    def contrastStretching(original_array):
     min_val = np.min(original_array)
@@ -16,8 +15,7 @@
     return stretched_array
    ```
    
-   $r_1 = r_2, \quad s_1 = 0, \quad s_2 = L - 1$
-   
+   $r_1 = r_2, \quad s_1 = 0, \quad s_2 = L - 1$   
    ``` python
    def thresholding(original_array):
     avg_val = np.average(original_array)
@@ -26,7 +24,7 @@
     thresholded_array = thresholded_array.astype(np.uint8)
     return thresholded_array
    ```
-    ![](ch03/Images/Result/ex07_PiecewiseLinear.png)
+   
    
 - **Inensity-Level-Slicing**
    ``` python
