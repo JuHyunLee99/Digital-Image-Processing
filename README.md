@@ -154,4 +154,4 @@ PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중�
 => 정규화된 히스토그램의 모든 요소의 합은 1
 
 ```
-![](ch03/Images/Result/Histogram_Processing/ex01_Histogram.png)
+![0](ch03/Images/Result/Histogram_Processing/ex01_Histogram.png)
