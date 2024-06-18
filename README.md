@@ -11,22 +11,21 @@
 - Point Operations (Intensity Transformations)
 - Spatial Filters (or Mask, Kernel)
 #### 1.1.1 Intensity Transformations
-##### a. Negative
-$s = L - 1 - r$
+##### 1. Negative
+`s = L - 1 - s`
 - r : 원본 이미지의 픽셀 값
 - s : 변환된 이미지의 픽셀 값
 - L : 최대 밝기 레벨의 수 (8비트 이미지 L = 256
-  
+
 ``` python
 max_value = np.iinfo(original_array.dtype).max
 negative_array = max_value - original_array
 ```
 ![](ch03/Images/Result/ex01_Negative.png)
 
-##### b. Log
+##### 2. Log
 
-$s = c \cdot \log(1 + r) \quad \text{for} \quad r \geq 0$
-
+`s = c * log(1 + r) for r >= 0`
 ``` python
 original_image = Image.open(image_path)
 original_array = np.array(original_image, dtype=np.float32)
@@ -36,12 +35,12 @@ log_array = c_log * np.log(1 + original_array) # np.log(1 + original_array)에�
 ```
 ![](ch03/Images/Result/ex02_Log.png)
 
-##### c. Power Low
+##### 3. Power Low
 
-$s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$
+`s = c * r^γ where c and γ are positive constants`
 
 ※ 오프셋  
-$s = c \cdot (r + o)^\gamma \quad \text{where } c, \gamma \text{ are positive constants, and } o \text{ is the offset}$
+`s = c * (r + o)^γ where c, γ are positive constants, and o is the offset`
 
 ``` python
 def gammaTransform(gamma, original_array):
@@ -63,8 +62,10 @@ def gammaTransform(gamma, original_array):
 ![](ch03/Images/Result/ex06_LogVsPowerLow_2.png)
 ![](ch03/Images/Result/ex06_LogVsPowerLow_3.png)
 
-##### d. Piecewise Linear
+##### 4. Piecewise Linear
 - **Contrast Stretching**
+  
+  `(r1, s1) = (r_min, 0), (r2, s2) = (r_max, L-1)`
   ``` python
    def contrastStretching(original_array):
     min_val = np.min(original_array)
@@ -76,7 +77,8 @@ def gammaTransform(gamma, original_array):
     stretched_array = (original_array - min_val) / (max_val - min_val) * 255 
     stretched_array = stretched_array.astype(np.uint8)
     return stretched_array
-  ``` 
+  ```
+  `r1 = r2, s1 = 0, s2 = L - 1`
   ``` python
   def thresholding(original_array):
    avg_val = np.average(original_array)
@@ -101,5 +103,7 @@ def gammaTransform(gamma, original_array):
     return sliced_array
   ```
   ![](ch03/Images/Result/ex08_PiecewiseLinear.png) 
+
+
 
 
