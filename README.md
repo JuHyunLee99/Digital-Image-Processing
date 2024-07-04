@@ -68,7 +68,8 @@ Log 변환은 이미지의 밝기 범위를 균등하게 확장하여 이미지�
 PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중요한 영역의 시각적인 구분을 명확하게 하는데 도움.
 ![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_2.png)
 ![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_3.png)
-로그 변환은 특히 어두운 부분의 디테일을 더욱 선명하게 보이도록 해주는 반면, 파워 로 변환은 밝은 부분의 대비를 더욱 증가시켜줍니다.
+로그 변환은 특히 어두운 부분의 디테일을 더욱 선명하게 보이도록 해주는 반면, 밝은 부분은 디테일이 떨어짐.  
+파워 로 변환은 어두운 부분의 디테일을 살려주면서 밝은 부분도 디테일이 살아있음. 전반적으로 대비를 더욱 증가시켜줍니다.
 ##### 4. Piecewise Linear
 - **Contrast Stretching**
   
