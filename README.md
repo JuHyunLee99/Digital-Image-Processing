@@ -4,7 +4,7 @@
 
 ![diagram](https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/45ec4d14-04ea-421e-b941-1877d496544f)
 
-> ※ 모듈 PIL, numpy, matplotlib.pyplot
+> ※ 모듈 PIL, numpy, matplotlib.pyplot  
 > pyplot : 이미지 띄우면 크기 바껴서 나옴. 그럼 보간법 등으로 픽셀 달라지고,  plt.imshow(img)할때 cmap (컬러맵), vmin과 vmax 설정 필요.   
 > - 그레이스케일 이미지에 'gray' 컬러맵 설정.
 > - vmin과 vmax 설정 안하면 컨트라스트 스트레칭되서 띄어짐.
