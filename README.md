@@ -62,7 +62,7 @@ def gammaTransform(gamma, original_array):
    ![](ch03/Images/Result/Intensity_Transformations/ex05_PowerLow.png)
   
 ##### **※ Log VS PowerLow(γ < 1)**
-![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_1.png)
+![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_1.png)  
 Log 변환은 이미지의 밝기 범위를 균등하게 확장하여 이미지에서 밝기 값이 낮은 영역(어두운 부분)의 세부사항이 크게 강조.
 로그 변환된 이미지는 패턴과 질감이 더욱 명확하게 드러남.
 PowerLow(γ < 1)는  전체적으로 이미지를 부드럽게 하면서도 중요한 영역의 시각적인 구분을 명확하게 하는데 도움.
