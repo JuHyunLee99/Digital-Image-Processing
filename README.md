@@ -25,11 +25,15 @@
 max_value = np.iinfo(original_array.dtype).max
 negative_array = max_value - original_array
 ```
-![](ch03/Images/Result/Intensity_Transformations/ex01_Negative.png)
+![](ch03/Images/Result/Intensity_Transformations/ex01_Negative.png)  
+영상의 어두운 영역에 놓여 있는 흰색이나 그레이 디테일을 개선시키는 데 특히 적합.
 
 ##### 2. Log
 
-`s = c * log(1 + r) for r >= 0`
+`s = c * log(1 + r) for r >= 0`  
+  
+어두운 화소의 값들은 시장시키고, 높은 레벨의 값들은 압축하고자 할 때 사용. **역 로그변환**은 그 반대.  
+=> **Power Low** 가 더 유연.
 ``` python
 original_image = Image.open(image_path)
 original_array = np.array(original_image, dtype=np.float32)
@@ -37,7 +41,26 @@ original_array = np.array(original_image, dtype=np.float32)
 c_log = 255 / np.log(1 + np.max(original_array))   # c: 스케일링 상수 =>  표준 8비트 그레이스케일 범위 [0, 255] 벗어나지 않도록 
 log_array = c_log * np.log(1 + original_array) # np.log(1 + original_array)에서 256으로 오버플로우 발생하므로 dtype=np.float32로 설정.
 ```
-![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)
+![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)  
+로그 함수는 화소 값들의 편차가 큰 영상의 동적 범위를 압축하는 중요한 특성을 가짐. 고전적인 예 **Fourier 스펙트럼**  
+  
+**첫번째 그림** : `0 ~ 1.5 * 10^6` 범위의 값을 갖는 Fourier 스펙트럼을 보여줌.
+8-비트 표시기를 위해 선형적으로 스케일링될 때, 스펙트럼의 가장 밝은 값의 화소들이 더 낮은 값들을 희생하여 표시기를 차지.  
+=> 영상에서 흑색으로 나타나지 않은 상대적으로 작은 영역이 확인됨.  
+  
+**두번째 그림** : 로그변환을 통해 결과 값들의 범위를 `0 ~ 6.2`로 변환됨.  
+새 범위를 선형적으로 스케일링해서 똑같은 8비트 표시기에 스펙트럼을 표시한 결과.
+=> 풍부한 디테일을 확인할 수 있음.
+
+
+※ **Fourier 스펙트럼**  
+지금은 스펙트럼의 영상 특성에만 관심. `0~10^6`이나 그 이상까지 변하는 스펙트럼 값들이 흔함.  
+영상 표시 시스템들은 그렇게 넓은 범위의 밝기 값들을 표현할 수 없음.  
+=> 디테일의 상당 부분이 손실.
+
+
+
+
 
 ##### 3. Power Low
 
