@@ -62,7 +62,7 @@ scaled_log_array = log_array * scaling_factor
 scaled_log_array = scaled_log_array.astype(np.uint8)
 # -------------------------------------------------------------------
 ```
-![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)  
+![](https://github.com/JuHyunLee99/Digital-Image-Processing/blob/main/ch03/Images/Result/Intensity_Transformations/ex02_Log-2.png )
 
   
 **첫번째 그림** : `0 ~ 1.5 * 10^6` 범위의 값을 갖는 Fourier 스펙트럼을 보여줌.  
