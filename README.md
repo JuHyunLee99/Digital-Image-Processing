@@ -35,11 +35,11 @@ negative_array = max_value - original_array
 어두운 화소의 값들은 시장시키고, 높은 레벨의 값들은 압축하고자 할 때 사용. **역 로그변환**은 그 반대.  
 => **Power Low** 가 더 유연.
 ``` python
-original_image = Image.open(image_path)
-original_array = np.array(original_image, dtype=np.float32)
-
-c_log = 255 / np.log(1 + np.max(original_array))   # c: 스케일링 상수 =>  표준 8비트 그레이스케일 범위 [0, 255] 벗어나지 않도록 
-log_array = c_log * np.log(1 + original_array) # np.log(1 + original_array)에서 256으로 오버플로우 발생하므로 dtype=np.float32로 설정.
+# -------------------------- 로그 변환 수행 --------------------------
+c_log = 1  # c: 스케일링 상수 =>  표준 8비트 그레이스케일 범위 [0, 255] 벗어나지 않도록, 이 예제는 c=1이라고 명시됨. 
+log_array = c_log * np.log10(1 + spectrum_array) 
+# np.log(1 + original_array)에서 256으로 오버플로우 발생하므로 np.array(dtype=np.float32)으로 설정.
+# -------------------------------------------------------------------
 ```
 ![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)  
 로그 함수는 화소 값들의 편차가 큰 영상의 동적 범위를 압축하는 중요한 특성을 가짐. 고전적인 예 **Fourier 스펙트럼**  
