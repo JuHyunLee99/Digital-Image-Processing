@@ -15,7 +15,9 @@
 - Point Operations (Intensity Transformations)
 - Spatial Filters (or Mask, Kernel)
 #### 1.1.1 Intensity Transformations
-![image](https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/47579f0e-dec9-4604-8316-98c2993aff37)
+<p align="center">
+  <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/47579f0e-dec9-4604-8316-98c2993aff37" alt="Intensity Transformations" width="400" height="400">
+</p>
 
 ##### 1. Negative
 `s = L - 1 - s`
