@@ -20,10 +20,11 @@
 </p>
 
 ##### 1. Negative
-`s = L - 1 - s`
-- r : 원본 이미지의 픽셀 값
-- s : 변환된 이미지의 픽셀 값
-- L : 최대 밝기 레벨의 수 (8비트 이미지 L = 256
+
+> $s = L - 1 - s$
+> - r : 원본 이미지의 픽셀 값
+> - s : 변환된 이미지의 픽셀 값
+> - L : 최대 밝기 레벨의 수 (8비트 이미지 L = 256
 
 ``` python
 max_value = np.iinfo(original_array.dtype).max
@@ -34,7 +35,7 @@ negative_array = max_value - original_array
 그냥 반전한거지만 반전한 영상이 더 잘 보임.
 
 ##### 2. Log
-`s = c * log(1 + r) where r >= 0`
+> $s = c \cdot \log(1 + r) \quad \text{where } r \geq 0$
   
 어두운 화소의 값들은 시장시키고, 높은 레벨의 값들은 압축하고자 할 때 사용. **역 로그변환**은 그 반대.  
 => **Power Low** 가 더 유연.
@@ -69,15 +70,15 @@ scaled_log_array = scaled_log_array.astype(np.uint8)
 ![](https://github.com/JuHyunLee99/Digital-Image-Processing/blob/main/ch03/Images/Result/Intensity_Transformations/ex02_Log-2.png )
 
   
-**첫번째 그림** : `0 ~ 1.5 * 10^6` 범위의 값을 갖는 Fourier 스펙트럼을 보여줌.  
+**첫번째 그림** : **$0 \leq x \leq 1.5 \times 10^6$** 범위의 값을 갖는 Fourier 스펙트럼을 보여줌.  
 8-비트 표시기를 위해 선형적으로 스케일링될 때, 스펙트럼의 가장 밝은 값의 화소들이 더 낮은 값들을 희생하여 표시기를 차지.  
 => 영상에서 흑색으로 나타나지 않은 상대적으로 작은 영역이 확인됨.  
   
-**두번째 그림** : 로그변환을 통해 결과 값들의 범위를 `0 ~ 6.2`로 변환됨.  
+**두번째 그림** : 로그변환을 통해 결과 값들의 범위를 **$0 \leq x \leq 6.2$**`로 변환됨.  
 Fourier 스펙트럼 값에 로그변환을 적용한 후, 새 범위를 선형적으로 스케일링해서 똑같은 8비트 표시기에 스펙트럼을 표시한 결과.  
 => 풍부한 디테일을 확인할 수 있음.  
 (근데 이미 original_image는 Fourier 스펙트럼을 8비트로 선형적으로 스케일링한 이미지임.  
-원본 데이터의 정확한 동적 범위를 알 수 는 없지만 `0 ~ 1.5 * 10^6` 범위로 역스케일링함.  이후 로그 변환을 적용.
+원본 데이터의 정확한 동적 범위를 알 수 는 없지만 **$0 \leq x \leq 1.5 \times 10^6$** 범위로 역스케일링함.  이후 로그 변환을 적용.
 
 ※ 역스케일링하지 않고 바로 로그한건데 이 예제 결과랑 더 비슷한거 같음.. 뭐가 맞는거지?.. 
 ![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)
@@ -87,10 +88,10 @@ Fourier 스펙트럼 값에 로그변환을 적용한 후, 새 범위를 선형�
   <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/63a2ccf3-fd4f-4961-a3dc-c7616e9a0de9" alt="Intensity Transformations" width="400" height="400">
 </p>
 
-`s = c * r^γ where c and γ are positive constants`
-
-※ 오프셋  
-`s = c * (r + o)^γ where c, γ are positive constants, and o is the offset`
+> $s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$  
+>
+> ※ 오프셋  
+> $s = c \cdot (r + o)^\gamma \quad \text{where } c \text{ , } \gamma \text{ are positive constants, and } o \text{ is the offset }$
 
 ``` python
 def gammaTransform(gamma, original_array):
