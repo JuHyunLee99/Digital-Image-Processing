@@ -89,7 +89,7 @@ Fourier 스펙트럼 값에 로그변환을 적용한 후, 새 범위를 선형�
 </p>
 
 > $s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$  
->
+
 > ※ 오프셋  
 > $s = c \cdot (r + o)^\gamma \quad \text{where } c \text{ , } \gamma \text{ are positive constants, and } o \text{ is the offset }$
 
