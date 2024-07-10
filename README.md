@@ -30,11 +30,11 @@ max_value = np.iinfo(original_array.dtype).max
 negative_array = max_value - original_array
 ```
 ![](ch03/Images/Result/Intensity_Transformations/ex01_Negative.png)  
-영상의 어두운 영역에 놓여 있는 흰색이나 그레이 디테일을 개선시키는 데 특히 적합.
+영상의 어두운 영역에 놓여 있는 흰색이나 그레이 디테일을 개선시키는 데 특히 적합.  
+그냥 반전한거지만 반전한 영상이 더 잘 보임.
 
 ##### 2. Log
-
-`s = c * log(1 + r) for r >= 0`  
+`s = c * log(1 + r)` where `r >= 0`
   
 어두운 화소의 값들은 시장시키고, 높은 레벨의 값들은 압축하고자 할 때 사용. **역 로그변환**은 그 반대.  
 => **Power Low** 가 더 유연.
