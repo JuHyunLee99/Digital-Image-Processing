@@ -34,7 +34,7 @@ negative_array = max_value - original_array
 그냥 반전한거지만 반전한 영상이 더 잘 보임.
 
 ##### 2. Log
-`s = c * log(1 + r)` where `r >= 0`
+`s = c * log(1 + r) where r >= 0`
   
 어두운 화소의 값들은 시장시키고, 높은 레벨의 값들은 압축하고자 할 때 사용. **역 로그변환**은 그 반대.  
 => **Power Low** 가 더 유연.
@@ -43,7 +43,7 @@ negative_array = max_value - original_array
 
 ※ **Fourier 스펙트럼**  
 지금은 스펙트럼의 영상 특성에만 관심.  
-`0 ~ 10^6`이나 그 이상까지 변하는 스펙트럼 값들이 흔함.  
+**$0 \leq x \leq 10^6$** 이나 그 이상까지 변하는 스펙트럼 값들이 흔함.  
 영상 표시 시스템들은 그렇게 넓은 범위의 밝기 값들을 표현할 수 없음.  
 => 디테일의 상당 부분이 손실.
 
@@ -79,7 +79,13 @@ Fourier 스펙트럼 값에 로그변환을 적용한 후, 새 범위를 선형�
 (근데 이미 original_image는 Fourier 스펙트럼을 8비트로 선형적으로 스케일링한 이미지임.  
 원본 데이터의 정확한 동적 범위를 알 수 는 없지만 `0 ~ 1.5 * 10^6` 범위로 역스케일링함.  이후 로그 변환을 적용.
 
+※ 역스케일링하지 않고 바로 로그한건데 이 예제 결과랑 더 비슷한거 같음.. 뭐가 맞는거지?.. 
+![](ch03/Images/Result/Intensity_Transformations/ex02_Log.png)
+
 ##### 3. Power Low
+<p align="center">
+  <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/63a2ccf3-fd4f-4961-a3dc-c7616e9a0de9" alt="Intensity Transformations" width="400" height="400">
+</p>
 
 `s = c * r^γ where c and γ are positive constants`
 
