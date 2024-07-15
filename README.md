@@ -16,12 +16,12 @@
 - Spatial Filters (or Mask, Kernel)
 #### 1.1.1 Intensity Transformations
 <p align="center">
-  <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/47579f0e-dec9-4604-8316-98c2993aff37" alt="Intensity Transformations" width="400" height="400">
+  <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/47579f0e-dec9-4604-8316-98c2993aff37" alt="Intensity Transformations" width="300" height="300">
 </p>
 
 ##### 1. Negative
 
-> $s = L - 1 - s$
+`s = L - 1 - s`
 > - r : 원본 이미지의 픽셀 값
 > - s : 변환된 이미지의 픽셀 값
 > - L : 최대 밝기 레벨의 수 (8비트 이미지 L = 256
@@ -85,7 +85,7 @@ Fourier 스펙트럼 값에 로그변환을 적용한 후, 새 범위를 선형�
 
 ##### 3. Power Low
 <p align="center">
-  <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/63a2ccf3-fd4f-4961-a3dc-c7616e9a0de9" alt="Intensity Transformations" width="400" height="400">
+  <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/63a2ccf3-fd4f-4961-a3dc-c7616e9a0de9" alt="Intensity Transformations" width="300" height="300">
 </p>
 
 > $s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$  
@@ -119,10 +119,16 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 ![](ch03/Images/Result/Intensity_Transformations/ex06_LogVsPowerLow_3.png)
 로그 변환은 특히 어두운 부분의 디테일을 더욱 선명하게 보이도록 해주는 반면, 밝은 부분은 디테일이 떨어짐.  
 파워 로 변환은 어두운 부분의 디테일을 살려주면서 밝은 부분도 디테일이 살아있음. 전반적으로 대비를 더욱 증가시켜줍니다.
+
 ##### 4. Piecewise Linear
 - **Contrast Stretching**
   
   `(r1, s1) = (r_min, 0), (r2, s2) = (r_max, L-1)`
+  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aa1e9d61-bbdf-4c03-a80a-9853fc4a8e6f" width="300" height="300">
+</p>
+
   ``` python
    def contrastStretching(original_array):
     min_val = np.min(original_array)
@@ -136,6 +142,11 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
     return stretched_array
   ```
   `r1 = r2, s1 = 0, s2 = L - 1`
+  <p align="center">
+  <img src="https://github.com/user-attachments/assets/83ebb058-2a2e-455b-b968-d086311f6fb4" width="300" height="300">
+  </p>
+
+  
   ``` python
   def thresholding(original_array):
    avg_val = np.average(original_array)
@@ -150,6 +161,10 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 - **Inensity-Level-Slicing**
   
   특정 밝기 범위 강조
+  <p align="center">
+  <img src="https://github.com/user-attachments/assets/543116af-51b9-4649-823e-3095700de953" width="700" height="300">
+  </p>
+  
   ``` python
    def intensityLevelSlicing(original_array, lower, upper, binary_mode):
     
