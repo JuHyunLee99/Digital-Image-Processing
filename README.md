@@ -234,7 +234,7 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 </p>
 
 ##### 1. Histogram equalization
-- 연속적 밝기 값을 고려  
+- 연속적 밝기 값을 고려 ($[0, L-1]$의 랜덤 변수)
   **변환 조건**  
   `s = 𝑇(𝑟), 0 ≤ 𝑟 ≤ L - 1`  
   > 1. 𝑇(𝑟)은 0 ≤ 𝑟 ≤ L - 1 구간의 **단조 증가함수**  
@@ -246,7 +246,7 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 
   > <img src="https://github.com/user-attachments/assets/206f015b-fcda-4d0d-bc4c-9f66f1a08fb1" width="600" height="200">
 
-  **확률 밀도 함수(PDF) $p_r(r)$, $p_s(s)$**  
+  **$p_r(r)$**, **$p_s(s)$**는 **PDF(확률 밀도 함수)**  
   
   s = T(r)인 관계에서 $p_r(r)$과 $T(r)$이  알려져 있고, $T(r)$이 관심 값 범위에서 연속적이고 미분가능하다면 다음 공식 성립  
   
@@ -270,9 +270,6 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 <img src="https://github.com/user-attachments/assets/0130a35a-e6a4-4c45-8913-d6bc75bf2654" width="600" height="200">
 </p>
 
- 
-    
-  
 - **이산 밝기 값**  
   $p_r(r_k) = \frac{n_k}{MN}$ ,  k = 0, 1, 2, ..., L-1  => $p_r(r_k)$ 대 $r_k$의 그래프를 **히스토그램**이라 부름
 
