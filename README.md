@@ -183,7 +183,7 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
   
   특정 비트의 기여를 강조
   <p align="center">
-  <img src="https://github.com/user-attachments/assets/169707ad-5551-4784-bd65-044403938d6d" width="700" height="300">
+  <img src="https://github.com/user-attachments/assets/169707ad-5551-4784-bd65-044403938d6d" width="600" height="300">
   </p>
   
   ``` python
@@ -218,14 +218,17 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 - r_k : k번째 밝기 값
 - n_k : 영상에서 밝기 r_k를 갖는 화소들 수
 
-정규화  
+정규화
 `p(r_k) = n_k/NM`  
 - N, M = 영상의 행과 열 수  
 => p(r_k)는 영상에서 밝기 레벨 r_k가 발생할 확률
 => 정규화된 히스토그램의 모든 요소의 합은 1
-![0](ch03/Images/Result/Histogram_Processing/ex01_Histogram.png)
 
-히스토그램 평활화
+<p align="center">
+<img src="ch03/Images/Result/Histogram_Processing/ex01_Histogram.png" width="600" height="600">
+</p>
+
+##### 1. Histogram equalization
 
 ![히스토그램 평활화](ch03/Images/Result/Histogram_Processing/ex02_Equalization.png)
 
