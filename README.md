@@ -215,7 +215,6 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
   네 개의 최상위 비트 평면들을 저장하면 만족할 만한 디테일을 갖게 원래 영상을 복구할 수 있다.
 
 #### 1.1.2 Histogram Processing
-
 `h(r_k) = n_k  where 0 ≤ r_k ≤ L-1`
 - r_k : k번째 밝기 값
 - n_k : 영상에서 밝기 r_k를 갖는 화소들 수
@@ -231,6 +230,18 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 </p>
 
 ##### 1. Histogram equalization
-`𝑆 = 𝑇(𝑟), 0 ≤ 𝑟 ≤ 1`
+
+`s = 𝑇(𝑟), 0 ≤ 𝑟 ≤ L - 1`
+> 1. 𝑇(𝑟)은 0 ≤ 𝑟 ≤ L - 1 구간의 **단조 증가함수**
+> 2. 0 ≤ 𝑟 ≤ L - 1에 대해  0 ≤ s ≤ L - 1
+
+역
+`r = T(s)^(-1), 0 ≤ s ≤ L-1`
+> 1. 𝑇(𝑟)은 0 ≤ 𝑟 ≤ L - 1 구간의 **엄밀 단조 증가함수**
+> 2. 0 ≤ 𝑟 ≤ L - 1에 대해  0 ≤ s ≤ L - 1
+
+> <img src="https://github.com/user-attachments/assets/206f015b-fcda-4d0d-bc4c-9f66f1a08fb1" width="600" height="300">
+
+
 ![히스토그램 평활화](ch03/Images/Result/Histogram_Processing/ex02_Equalization.png)
 
