@@ -35,7 +35,7 @@ negative_array = max_value - original_array
 그냥 반전한거지만 반전한 영상이 더 잘 보임.
 
 ##### 2. Log
-> $s = c \cdot \log(1 + r) \quad \text{where } r \geq 0$
+`𝑠 = 𝑐𝑙𝑜𝑔(1 + 𝑟), 0 ≤ 𝑟`
   
 어두운 화소의 값들은 시장시키고, 높은 레벨의 값들은 압축하고자 할 때 사용. **역 로그변환**은 그 반대.  
 => **Power Low** 가 더 유연.
@@ -88,10 +88,12 @@ Fourier 스펙트럼 값에 로그변환을 적용한 후, 새 범위를 선형�
   <img src="https://github.com/JuHyunLee99/Digital-Image-Processing/assets/123914434/63a2ccf3-fd4f-4961-a3dc-c7616e9a0de9" alt="Intensity Transformations" width="300" height="300">
 </p>
 
-> $s = c \cdot r^\gamma \quad \text{where } c \text{ and } \gamma \text{ are positive constants}$  
+`s = c𝑟^γ, 𝑟 ≥ 0`
 
-> ※ 오프셋  
-> $s = c \cdot (r + o)^\gamma \quad \text{where } c \text{ , } \gamma \text{ are positive constants, and } o \text{ is the offset }$
+※ 오프셋  
+`s=c(𝑟+ε)^γ`
+> c, 𝑟 ≥ 0  
+> ε : offset
 
 ``` python
 def gammaTransform(gamma, original_array):
@@ -229,6 +231,6 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 </p>
 
 ##### 1. Histogram equalization
-
+`𝑆 = 𝑇(𝑟), 0 ≤ 𝑟 ≤ 1`
 ![히스토그램 평활화](ch03/Images/Result/Histogram_Processing/ex02_Equalization.png)
 
