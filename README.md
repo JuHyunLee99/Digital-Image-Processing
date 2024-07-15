@@ -182,6 +182,10 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 - **Bit-plane slicing**
   
   특정 비트의 기여를 강조
+  <p align="center">
+  <img src="https://github.com/user-attachments/assets/169707ad-5551-4784-bd65-044403938d6d" width="700" height="300">
+  </p>
+  
   ``` python
   def bitPlaneSlicing(original_array, i):
       mask = 1 << i
