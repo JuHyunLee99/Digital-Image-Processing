@@ -228,25 +228,29 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
   > N, M = 영상의 행과 열 수
   
 - $p(r_k)$는 영상에서 밝기 레벨 $r_k$가 발생할 확률  
-- 정규화된 히스토그램의 모든 요소의 합은 1  
+- 정규화된 히스토그램의 모든 요소의 합은 1
+  
 <p align="center">
 <img src="ch03/Images/Result/Histogram_Processing/ex01_Histogram.png" width="600" height="600">
 </p>
 
 ##### 1. Histogram equalization
-- 연속적 밝기 값을 고려 ($[0, L-1]$의 랜덤 변수)
+- 연속적 밝기 값을 고려 (영상 밝기 값 $[0, L-1]$의 랜덤 변수)  
   **변환 조건**  
+  
+  <p align="center">
+  <img src="https://github.com/user-attachments/assets/206f015b-fcda-4d0d-bc4c-9f66f1a08fb1" width="500" height="200">
+  </p>
+  
   `s = 𝑇(𝑟), 0 ≤ 𝑟 ≤ L - 1`  
   > 1. 𝑇(𝑟)은 0 ≤ 𝑟 ≤ L - 1 구간의 **단조 증가함수**  
   > 2. 0 ≤ 𝑟 ≤ L - 1에 대해  0 ≤ s ≤ L - 1  
 
   `r = T(s)^(-1), 0 ≤ s ≤ L-1`  
   > 1. 𝑇(𝑟)은 0 ≤ 𝑟 ≤ L - 1 구간의 **엄밀 단조 증가함수**  
-  > 2. 0 ≤ 𝑟 ≤ L - 1에 대해  0 ≤ s ≤ L - 1  
-
-  > <img src="https://github.com/user-attachments/assets/206f015b-fcda-4d0d-bc4c-9f66f1a08fb1" width="600" height="200">
-
-  **$p_r(r)$**, **$p_s(s)$**는 **PDF(확률 밀도 함수)**  
+  > 2. 0 ≤ 𝑟 ≤ L - 1에 대해  0 ≤ s ≤ L - 1
+  
+  **$p_r(r)$, $p_s(s)$는 PDF(확률 밀도 함수)**  
   
   s = T(r)인 관계에서 $p_r(r)$과 $T(r)$이  알려져 있고, $T(r)$이 관심 값 범위에서 연속적이고 미분가능하다면 다음 공식 성립  
   
@@ -263,7 +267,7 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
   
   $p_s(s) = p_r(r) \left| \frac{dr}{ds} \right| = \frac{p_r(r)}{(L-1)p_r(r)} = \frac{1}{L-1} \quad \text{for} \quad 0 \leq s \leq L-1$
 
-  $p_s(s)$의 형태는 균등 확률 밀도 함수.
+  $p_s(s)$의 형태는 **균등 확률 밀도 함수**.
   
   **이로 부터 $T(r)$은 $p_r(r)$에 종속되지만, 결과인 $p_s(s)$는  $p_r(r)$의 형태와 무관하게 항상 균등함을 알수 있음.**  
 <p align="center">
