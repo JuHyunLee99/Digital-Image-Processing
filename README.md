@@ -276,15 +276,21 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
 
 - **이산 밝기 값**  
   $p_r(r_k) = \frac{n_k}{MN}$ ,  k = 0, 1, 2, ..., L-1  => $p_r(r_k)$ 대 $r_k$의 그래프를 **히스토그램**이라 부름
-
-  ![image](https://github.com/user-attachments/assets/a52ef44e-454c-45d2-bf4d-a9f2f67617cb)
+  
+  <img src="https://github.com/user-attachments/assets/4820651e-9014-4902-ae30-f91c6dbe2eb6" width="700" height="40">
   
   $T(r_k)$를 **히스토그램 평활화** 또는 히스토그램 선형화 변환이라고 부름
 
   > 64x64 화소 3-비트 영상(L=8) 의 밝기 분포
   > 
   > <img src="https://github.com/user-attachments/assets/3f6bd009-4c89-4e0e-bf93-7887bcae2ca8" width="250" height="200">
-  > 
+  >
+  > <img src="https://github.com/user-attachments/assets/0d193128-9b7a-4b34-8c22-f84212f897c8" width="500" height="150">
+
+
+
+
+
 
 
   
