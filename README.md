@@ -239,7 +239,7 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
   **변환 조건**  
   
   <p align="center">
-  <img src="https://github.com/user-attachments/assets/206f015b-fcda-4d0d-bc4c-9f66f1a08fb1" width="500" height="200">
+  <img src="https://github.com/user-attachments/assets/8f5dff5b-8a42-46d5-8372-da1ab48b4e7c" width="500" height="250">
   </p>
   
   `s = 𝑇(𝑟), 0 ≤ 𝑟 ≤ L - 1`  
