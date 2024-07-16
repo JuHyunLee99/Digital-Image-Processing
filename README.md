@@ -280,6 +280,13 @@ Log변환히 확실히 더 Fourier스펙트럼의 디테일을 잘 표현하는�
   ![image](https://github.com/user-attachments/assets/a52ef44e-454c-45d2-bf4d-a9f2f67617cb)
   
   $T(r_k)$를 **히스토그램 평활화** 또는 히스토그램 선형화 변환이라고 부름
+
+  > 64x64 화소 3-비트 영상(L=8) 의 밝기 분포
+  > 
+  > <img src="https://github.com/user-attachments/assets/3f6bd009-4c89-4e0e-bf93-7887bcae2ca8" width="250" height="200">
+  > 
+
+
   
 
 
