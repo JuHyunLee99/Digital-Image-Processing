@@ -16,7 +16,7 @@ def getTextSize(draw, text, font):
 # 결과 이미지 나타내기  
 def showImages(images, row, col, spacing = 20, fontSize = 30, title = None, indexNewImg = -1):
     # 새 캔버스 만들기
-    original_image = list(images.values())[0]
+    original_image = images["Original Image"]
     total_width = (original_image.width + spacing) * col + spacing
     if title == None:
         total_height = (original_image.height + 2*spacing) * row + 2*spacing

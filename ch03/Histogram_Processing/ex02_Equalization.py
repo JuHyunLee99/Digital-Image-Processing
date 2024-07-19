@@ -42,7 +42,7 @@ def histogram_equalizatioin(origin_array):
     
     # 누적 분포 함수(CDF) 계산
     cdf = hist_normalized.cumsum()
-    
+    # 평활화, Round
     cdf_scaled = np.round(cdf * 255).astype(np.uint8)
     
     # ※ 다차원 배열을 1차원으로 만들기
@@ -51,7 +51,8 @@ def histogram_equalizatioin(origin_array):
     
     # 원본 배열의 픽셀 값에 CDF를 매핑
     equalized_array = cdf_scaled[origin_array.flatten()].reshape(origin_array.shape)    
-    return equalized_array
+    
+    return equalized_array, cdf_scaled
     
 if __name__ == "__main__":
     image_paths = { 'Dark' : r'ch03\Images\Source\Fig0316(4)(bottom_left).tif',
@@ -59,10 +60,24 @@ if __name__ == "__main__":
                     'Low constrastr': r'ch03\Images\Source\Fig0316(2)(2nd_from_top).tif',
                     'Hight-constrast' : r'ch03\Images\Source\Fig0320(3)(third_from_top).tif'}
     arrays = dict()
+    
+    plt.figure(figsize=(8, 6))
+    
     for key, path in image_paths.items():
         origin_image = Image.open(path)
         origin_array = np.array(origin_image)
-        equalizated_array = histogram_equalizatioin(origin_array)
+        equalizated_array,  cdf_scaled = histogram_equalizatioin(origin_array)
         arrays[key] = (origin_array, equalizated_array)
-       
+
+        # 각 이미지의 변환 함수 T(r) 그리기
+        plt.plot(cdf_scaled, label=f'T(r) for {key}')
+            
+    plt.title('Histogram Equalization Transformation Function T(r)')
+    plt.xlabel('Input Intensity r')
+    plt.ylabel('Output Intensity s')
+    plt.xlim(0, 255)  
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+        
     showHist(arrays)
